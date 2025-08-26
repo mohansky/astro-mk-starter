@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"li"> {
+  active?: boolean;
+  disabled?: boolean;
+  href?: string;
+  class?: string;
+}
+
+const {
+  active = false,
+  disabled = false,
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  // Active state
+  active && "bordered",
+  // Disabled state
+  disabled && "disabled",
+  // Additional custom classes
+  className
+);
+
+const Element = href ? "a" : "span";
+---
+
+<li class={classes} {...rest}>
+  <Element href={href}>
+    <slot />
+  </Element>
+</li>

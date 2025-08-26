@@ -1,0 +1,21 @@
+---
+export interface Props {
+  variant?: 'default' | 'overlay' | 'center' | 'split';
+  class?: string;
+}
+
+const { variant = 'default', class: className, ...rest } = Astro.props;
+
+const variants = {
+  default: 'hero min-h-screen bg-base-200',
+  overlay: 'hero min-h-screen',
+  center: 'hero min-h-screen bg-base-200',
+  split: 'hero min-h-screen'
+};
+
+const heroClass = `${variants[variant]} ${className || ''}`.trim();
+---
+
+<div class={heroClass} {...rest}>
+  <slot />
+</div>

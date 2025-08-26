@@ -1,0 +1,82 @@
+---
+export interface Props {
+  variant?: 'small' | 'large';
+  class?: string;
+  animated?: boolean;
+}
+
+const { variant = 'small', class: className, animated = false, ...rest } = Astro.props;
+
+const variants = {
+  small: 'grid-pattern-small',
+  large: 'grid-pattern-large'
+};
+
+const backgroundClass = `background-grid ${variants[variant]} ${className || ''}`.trim();
+---
+
+<div class={backgroundClass} {...rest}>
+  <slot />
+</div>
+
+<style>
+  .background-grid {
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  .grid-pattern-small {
+    background-image: 
+      linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .grid-pattern-large {
+    background-image: 
+      linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .dark .grid-pattern-small {
+    background-image: 
+      linear-gradient(rgba(71, 85, 105, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(71, 85, 105, 0.1) 1px, transparent 1px);
+  }
+
+  .dark .grid-pattern-large {
+    background-image: 
+      linear-gradient(rgba(71, 85, 105, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(71, 85, 105, 0.15) 1px, transparent 1px);
+  }
+</style>
+
+{animated && (
+  <script>
+    async function initGridAnimation() {
+      try {
+        const { gsap } = await import('gsap');
+        
+        const gridElements = document.querySelectorAll('.background-grid');
+        gridElements.forEach(grid => {
+          gsap.to(grid, {
+            backgroundPosition: '40px 40px',
+            duration: 30,
+            repeat: -1,
+            ease: 'none'
+          });
+        });
+      } catch (error) {
+        console.error('GSAP failed to load for grid animation:', error);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGridAnimation);
+    } else {
+      initGridAnimation();
+    }
+  </script>
+)}

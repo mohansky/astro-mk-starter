@@ -1,0 +1,27 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import ContactForm from "@/components/widgets/ContactForm.astro";
+import ContactInfo from "@/components/widgets/ContactInfo.astro";
+---
+
+<section class="bg-base-100" id="contact">
+  <Container>
+    <div class="text-center mb-12">
+      <Heading as="h2" size="xl" class="text-primary mb-4">
+        Get In Touch
+      </Heading>
+      <p class="text-lg text-base-content/70 max-w-2xl mx-auto">
+        Ready to start your project? Send us a message and we'll get back to you
+        within 24 hours.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <!-- Contact Information -->
+      <ContactInfo />
+      <!-- Contact Form -->
+      <ContactForm />
+    </div>
+  </Container>
+</section>

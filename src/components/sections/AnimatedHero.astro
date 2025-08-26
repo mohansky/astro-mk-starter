@@ -1,0 +1,280 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Heading from "@/components/ui/Heading.astro";
+import HeroContent from "@/components/ui/HeroContent.astro";
+import Hero from "../ui/Hero.astro";
+---
+
+<Hero
+  class="hero-animated relative h-screen overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800"
+  >
+  <div class="background-container absolute inset-0">
+    <div
+      class="floating-shape shape-1 absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/25 to-purple-500/25 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="floating-shape shape-2 absolute w-[500px] h-[500px] bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="floating-shape shape-3 absolute w-[450px] h-[450px] bg-gradient-to-r from-indigo-500/15 to-blue-500/15 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <!-- Grid Pattern Overlay -->
+  <div class="grid-overlay absolute inset-0 opacity-10">
+    <div class="grid-pattern h-full w-full"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <HeroContent variant="overlay" class="relative z-30">
+    <div class="max-w-4xl space-y-8 text-center">
+      <Heading
+        as="h1"
+        size="xxl"
+        class="text-slate-800 dark:text-white"
+        fontstyle="manrope"
+        id="hero-title"
+      >
+        Hero with Animation
+      </Heading>
+
+      <p
+        class="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
+        id="hero-subtitle"
+      >
+        Beautiful hero section with animated gradient background.
+      </p>
+
+      <div class="flex gap-4 justify-center" id="hero-buttons">
+        <Button variant="soft" size="lg">Start now</Button>
+        <Button variant="outline" size="lg">Contact sales</Button>
+      </div>
+    </div>
+  </HeroContent>
+</Hero>
+
+<style>
+  .grid-pattern {
+    background-image: linear-gradient(
+        rgba(148, 163, 184, 0.3) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .dark .grid-pattern {
+    background-image: linear-gradient(
+        rgba(71, 85, 105, 0.3) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(71, 85, 105, 0.3) 1px, transparent 1px);
+  }
+
+  .floating-shape {
+    will-change: transform;
+  }
+
+  .shape-1 {
+    top: -15%;
+    left: -15%;
+  }
+  .shape-2 {
+    bottom: -20%;
+    right: -20%;
+  }
+  .shape-3 {
+    top: 40%;
+    left: 60%;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+</style>
+
+<script>
+  async function initAnimations() {
+    try {
+      const { gsap } = await import("gsap");
+
+      if (!document.querySelector(".hero-animated")) return;
+
+      // Set initial states
+      gsap.set(".floating-shape", { scale: 1 });
+
+      // More noticeable floating animations
+      gsap.to(".shape-1", {
+        x: 80,
+        y: -60,
+        scale: 1.2,
+        duration: 12,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".shape-2", {
+        x: -70,
+        y: 50,
+        scale: 0.9,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".shape-3", {
+        x: 60,
+        y: -40,
+        scale: 1.15,
+        duration: 14,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      // Animate grid pattern
+      gsap.to(".grid-pattern", {
+        backgroundPosition: "40px 40px",
+        duration: 30,
+        repeat: -1,
+        ease: "none",
+      });
+
+      // Hide subtitle and buttons initially
+      const subtitle = document.querySelector('#hero-subtitle') as HTMLElement;
+      const buttons = document.querySelector('#hero-buttons') as HTMLElement;
+      if (subtitle) {
+        subtitle.style.opacity = '0';
+      }
+      if (buttons) {
+        buttons.style.opacity = '0';
+      }
+
+      // Typewriter effect for heading
+      const heading = document.querySelector('#hero-title') as HTMLElement;
+      if (heading) {
+        const text = heading.textContent || '';
+        heading.textContent = '';
+        heading.style.opacity = '1';
+        
+        // Add cursor
+        const cursor = document.createElement('span');
+        cursor.textContent = '|';
+        cursor.style.animation = 'blink 1s infinite';
+        heading.appendChild(cursor);
+        
+        // Typewriter animation
+        gsap.to({}, {
+          duration: text.length * 0.1,
+          ease: 'none',
+          onUpdate: function() {
+            const progress = this.progress();
+            const currentLength = Math.floor(progress * text.length);
+            heading.textContent = text.slice(0, currentLength);
+            heading.appendChild(cursor);
+          },
+          onComplete: function() {
+            // Remove cursor after typing is complete
+            setTimeout(() => {
+              cursor.remove();
+              // Start subtitle animation after cursor removal
+              animateSubtitle();
+            }, 2000);
+          }
+        });
+      }
+
+      // Masked letters animation for subtitle
+      function animateSubtitle() {
+        const subtitle = document.querySelector('#hero-subtitle') as HTMLElement;
+        if (subtitle) {
+          const text = subtitle.textContent || '';
+          subtitle.innerHTML = '';
+          subtitle.style.opacity = '1'; // Make visible when animation starts
+          
+          // Create individual spans for each character
+          text.split('').forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
+            span.style.display = 'inline-block';
+            span.style.overflow = 'hidden';
+            span.style.transform = 'translateY(100%)';
+            span.style.opacity = '0';
+            subtitle.appendChild(span);
+          });
+
+          // Animate each letter with staggered timing
+          const letters = subtitle.querySelectorAll('span');
+          letters.forEach((letter, index) => {
+            gsap.to(letter, {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              delay: index * 0.02,
+              ease: 'power2.out'
+            });
+          });
+
+          // Start button animation after subtitle begins
+          setTimeout(() => {
+            animateButtons();
+          }, 500);
+        }
+      }
+
+      // Bounce buttons in from opposite sides
+      function animateButtons() {
+        const buttonsContainer = document.querySelector('#hero-buttons') as HTMLElement;
+        if (buttonsContainer) {
+          buttonsContainer.style.opacity = '1';
+          const buttons = buttonsContainer.querySelectorAll('button');
+          
+          if (buttons.length >= 2) {
+            // First button from left
+            gsap.fromTo(buttons[0], {
+              x: -200,
+              opacity: 0,
+              scale: 0.8
+            }, {
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: 'back.out(1.7)'
+            });
+
+            // Second button from right
+            gsap.fromTo(buttons[1], {
+              x: 200,
+              opacity: 0,
+              scale: 0.8
+            }, {
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              delay: 0.2,
+              ease: 'back.out(1.7)'
+            });
+          }
+        }
+      }
+    } catch (error) {
+      console.error("GSAP failed to load:", error);
+      // Text content is always visible - no fallback needed
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>

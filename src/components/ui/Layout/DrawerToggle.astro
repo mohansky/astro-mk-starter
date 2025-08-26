@@ -1,0 +1,31 @@
+---
+export interface Props {
+  for: string;
+  variant?: 'button' | 'navbar' | 'ghost';
+  class?: string;
+}
+
+const { 
+  for: htmlFor,
+  variant = 'button', 
+  class: className,
+  ...rest 
+} = Astro.props;
+
+const variants = {
+  button: 'btn btn-square btn-ghost',
+  navbar: 'btn btn-square btn-ghost lg:hidden',
+  ghost: 'btn btn-ghost'
+};
+
+const toggleClass = `${variants[variant]} ${className || ''}`.trim();
+---
+
+<label for={htmlFor} class={toggleClass} {...rest}>
+  <slot>
+    <!-- Default hamburger icon -->
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </slot>
+</label>

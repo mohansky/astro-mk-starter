@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  justify?: "start" | "center" | "end";
+  class?: string;
+}
+
+const {
+  justify = "end",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "card-actions",
+  justify === "start" && "justify-start",
+  justify === "center" && "justify-center", 
+  justify === "end" && "justify-end",
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

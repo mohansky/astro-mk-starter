@@ -1,0 +1,52 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  variant?: "default" | "bordered" | "compact" | "side";
+  shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl";
+  glass?: boolean;
+  image?: boolean;
+  hover?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  shadow = "md",
+  glass = false,
+  image = false,
+  hover = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  default: "card",
+  bordered: "card card-bordered",
+  compact: "card card-compact",
+  side: "card card-side",
+};
+
+const shadows: Record<string, string> = {
+  none: "",
+  sm: "shadow-sm",
+  md: "shadow-md", 
+  lg: "shadow-lg",
+  xl: "shadow-xl",
+  "2xl": "shadow-2xl",
+};
+
+const classes = cn(
+  variants[variant],
+  shadow !== "none" && shadows[shadow],
+  glass && "glass",
+  image && "image-full",
+  hover && "hover:shadow-xl transition-shadow duration-300",
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

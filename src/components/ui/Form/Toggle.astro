@@ -1,0 +1,50 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"input"> {
+  size?: "lg" | "md" | "sm" | "xs";
+  color?: "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  size,
+  color,
+  disabled = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const sizes: Record<string, string> = {
+  lg: "toggle-lg",
+  md: "toggle-md",
+  sm: "toggle-sm",
+  xs: "toggle-xs",
+};
+
+const colors: Record<string, string> = {
+  primary: "toggle-primary",
+  secondary: "toggle-secondary",
+  accent: "toggle-accent",
+  info: "toggle-info",
+  success: "toggle-success",
+  warning: "toggle-warning",
+  error: "toggle-error",
+};
+
+const classes = cn(
+  "toggle",
+  size && sizes[size],
+  color && colors[color],
+  className
+);
+---
+
+<input
+  type="checkbox"
+  class={classes}
+  disabled={disabled}
+  {...rest}
+/>

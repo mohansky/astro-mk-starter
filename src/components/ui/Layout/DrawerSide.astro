@@ -1,0 +1,15 @@
+---
+export interface Props {
+  htmlFor?: string;
+  class?: string;
+}
+
+const { htmlFor, class: className, ...rest } = Astro.props;
+
+const sideClass = `drawer-side ${className || ''}`.trim();
+---
+
+<div class={sideClass} {...rest}>
+  <label for={htmlFor || ''} class="drawer-overlay"></label>
+  <slot />
+</div>

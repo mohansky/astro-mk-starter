@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  side?: "left" | "right";
+  class?: string;
+}
+
+const {
+  side = "left",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "drawer",
+  // Side
+  side === "right" && "drawer-end",
+  // Additional custom classes
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

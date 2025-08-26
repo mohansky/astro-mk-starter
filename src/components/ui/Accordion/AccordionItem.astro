@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  open?: boolean;
+  variant?: "default" | "arrow" | "plus";
+  class?: string;
+}
+
+const {
+  open = false,
+  variant = "default",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  default: "collapse",
+  arrow: "collapse collapse-arrow",
+  plus: "collapse collapse-plus",
+};
+
+const classes = cn(
+  variants[variant],
+  open && "collapse-open",
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

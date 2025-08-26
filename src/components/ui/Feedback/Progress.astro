@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"progress"> {
+  color?: "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
+  value?: number;
+  max?: number;
+  class?: string;
+}
+
+const {
+  color,
+  value,
+  max = 100,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "progress",
+  "w-full",
+  // Color
+  color && `progress-${color}`,
+  // Additional custom classes
+  className
+);
+---
+
+<progress
+  class={classes}
+  value={value}
+  max={max}
+  {...rest}
+>
+  <slot />
+</progress>

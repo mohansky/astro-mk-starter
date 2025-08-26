@@ -1,0 +1,139 @@
+---
+// src/components/Navbar.astro
+import { getEntry } from 'astro:content';
+import Button from "@/components/ui/Button.astro";
+import DaisyNavbar from "@/components/ui/Navigation/Navbar/Navbar.astro";
+import NavbarStart from "@/components/ui/Navigation/Navbar/NavbarStart.astro";
+import NavbarCenter from "@/components/ui/Navigation/Navbar/NavbarCenter.astro";
+import NavbarEnd from "@/components/ui/Navigation/Navbar/NavbarEnd.astro";
+import Menu from "@/components/ui/Navigation/Menu/Menu.astro";
+import MenuItem from "@/components/ui/Navigation/Menu/MenuItem.astro";
+import Drawer from "@/components/ui/Layout/Drawer.astro";
+import DrawerContent from "@/components/ui/Layout/DrawerContent.astro";
+import DrawerSide from "@/components/ui/Layout/DrawerSide.astro";
+import DrawerToggle from "@/components/ui/Layout/DrawerToggle.astro";
+import Logo from "@/components/Icons/Logo.astro";
+import IconComponent from '@/components/Icons/IconComponent.astro';
+
+// Load site configuration from YAML
+const configEntry = await getEntry('config', 'site');
+const siteConfig = configEntry?.data || {
+  title: "Astro Blog",
+  navigationMain: [],
+  ctaPrimaryLabel: "Get Started"
+};
+
+const navigationLinks = siteConfig.navigationMain;
+---
+
+<!-- Drawer Layout for Mobile Navigation -->
+<Drawer id="main-drawer" class="drawer">
+  <DrawerContent>
+    <!-- Main Navigation Bar -->
+    <DaisyNavbar id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 backdrop-blur-md bg-background/80 shadow-sm">
+      <NavbarStart>
+        <!-- Logo -->
+        <a href="/">
+          <Logo class="w-12"/>
+          <span class="sr-only">
+            {siteConfig.title}
+          </span>
+        </a>
+      </NavbarStart>
+
+      <NavbarCenter class="hidden lg:flex">
+        <!-- Desktop Navigation Menu -->
+        <Menu class="menu-horizontal px-1">
+          {
+            navigationLinks.map((link) => (
+              <MenuItem href={link.href}>{link.label}</MenuItem>
+            ))
+          }
+        </Menu>
+      </NavbarCenter>
+
+      <NavbarEnd>
+        <!-- Desktop CTA Button -->
+        <Button
+          variant="outline" 
+          size="sm"
+          class="hidden lg:inline-flex"
+        >
+          {siteConfig.ctaPrimaryLabel}
+        </Button>
+
+        <!-- Mobile Menu Toggle -->
+        <DrawerToggle for="main-drawer" variant="navbar" class="lg:hidden" />
+      </NavbarEnd>
+    </DaisyNavbar>
+
+    <!-- Page Content Slot -->
+    <slot />
+  </DrawerContent>
+
+  <!-- Mobile Drawer Sidebar -->
+  <DrawerSide htmlFor="main-drawer">
+    <aside class="min-h-full w-64 bg-base-200 text-base-content">
+      <!-- Sidebar Header -->
+      <div class="p-4 border-b border-base-300">
+        <a href="/" class="text-xl font-bold text-primary">
+          {siteConfig.title}
+        </a>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <Menu class="mt-4">
+        {
+          navigationLinks.map((link) => (
+            <MenuItem href={link.href} class="rounded-none">
+              <IconComponent icon={link.icon} class="w-5 h-5"/>
+              {link.label}
+            </MenuItem>
+          ))
+        }
+
+        <!-- Divider -->
+        <li class="border-t border-base-300 my-2"></li>
+
+        <!-- Mobile CTA -->
+        <li class="p-2">
+          <Button class="w-full">
+            {siteConfig.ctaPrimaryLabel}
+          </Button>
+        </li>
+      </Menu>
+    </aside>
+  </DrawerSide>
+</Drawer>
+
+<script>
+  let lastScrollY = 0;
+  let ticking = false;
+
+  function updateNavbar() {
+    const navbar = document.getElementById('navbar');
+    const currentScrollY = window.scrollY;
+    
+    if (!navbar) return;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down - hide navbar
+      navbar.style.transform = 'translateY(-100%)';
+    } else {
+      // Scrolling up - show navbar
+      navbar.style.transform = 'translateY(0)';
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestTick);
+</script>

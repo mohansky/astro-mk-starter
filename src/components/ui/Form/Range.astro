@@ -1,0 +1,50 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"input"> {
+  size?: "lg" | "md" | "sm" | "xs";
+  color?: "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  size,
+  color,
+  disabled = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const sizes: Record<string, string> = {
+  lg: "range-lg",
+  md: "range-md",
+  sm: "range-sm",
+  xs: "range-xs",
+};
+
+const colors: Record<string, string> = {
+  primary: "range-primary",
+  secondary: "range-secondary",
+  accent: "range-accent",
+  info: "range-info",
+  success: "range-success",
+  warning: "range-warning",
+  error: "range-error",
+};
+
+const classes = cn(
+  "range",
+  size && sizes[size],
+  color && colors[color],
+  className
+);
+---
+
+<input
+  type="range"
+  class={classes}
+  disabled={disabled}
+  {...rest}
+/>

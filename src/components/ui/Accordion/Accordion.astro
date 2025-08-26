@@ -1,0 +1,54 @@
+---
+// src/components/ui/Accordion/Accordion.astro
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  variant?: "default" | "bordered" | "compact";
+  autoClose?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  autoClose = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "collapse",
+  variant === "bordered" && "collapse-arrow",
+  variant === "compact" && "collapse-plus",
+  className
+);
+---
+
+<div class={classes} data-accordion={autoClose ? "auto-close" : ""} {...rest}>
+  <slot />
+</div>
+
+<!-- {autoClose && ( -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const accordionContainers = document.querySelectorAll('[data-accordion="auto-close"]');
+      
+      accordionContainers.forEach(container => {
+        const accordionInputs = container.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+        
+        accordionInputs.forEach(input => {
+          input.addEventListener('change', function(this: HTMLInputElement) {
+            if (this.checked) {
+              // Close all other accordions within this container
+              accordionInputs.forEach(otherInput => {
+                if (otherInput !== this) {
+                  otherInput.checked = false;
+                }
+              });
+            }
+          });
+        });
+      });
+    });
+  </script>
+<!-- )} -->

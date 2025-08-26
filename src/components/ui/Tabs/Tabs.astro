@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  variant?: "default" | "bordered" | "lifted" | "boxed";
+  size?: "lg" | "md" | "sm" | "xs";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  default: "tabs",
+  bordered: "tabs tabs-border",
+  lifted: "tabs tabs-lift", 
+  boxed: "tabs tabs-box",
+};
+
+const sizes: Record<string, string> = {
+  lg: "tabs-lg",
+  md: "tabs-md",
+  sm: "tabs-sm",
+  xs: "tabs-xs",
+};
+
+const classes = cn(
+  variants[variant],
+  size && sizes[size],
+  className
+);
+---
+
+<div role="tablist" class={classes} {...rest}>
+  <slot />
+</div>

@@ -1,0 +1,681 @@
+---
+// Import all UI components
+import Container from "@/components/ui/Container.astro";
+import Heading from "@/components/ui/Heading.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+
+// Card components
+import Card from "@/components/ui/Card/Card.astro";
+import CardBody from "@/components/ui/Card/CardBody.astro";
+import CardTitle from "@/components/ui/Card/CardTitle.astro";
+import CardActions from "@/components/ui/Card/CardActions.astro";
+
+// Accordion components
+import AccordionItem from "@/components/ui/Accordion/AccordionItem.astro";
+import AccordionTrigger from "@/components/ui/Accordion/AccordionTrigger.astro";
+import AccordionContent from "@/components/ui/Accordion/AccordionContent.astro";
+
+// Tabs components
+import Tabs from "@/components/ui/Tabs/Tabs.astro";
+import Tab from "@/components/ui/Tabs/Tab.astro";
+import TabContent from "@/components/ui/Tabs/TabContent.astro";
+
+// Form components
+import Input from "@/components/ui/Form/Input.astro";
+import Textarea from "@/components/ui/Form/Textarea.astro";
+import Select from "@/components/ui/Form/Select.astro";
+import Checkbox from "@/components/ui/Form/Checkbox.astro";
+import Radio from "@/components/ui/Form/Radio.astro";
+import Toggle from "@/components/ui/Form/Toggle.astro";
+import Range from "@/components/ui/Form/Range.astro";
+import FileInput from "@/components/ui/Form/FileInput.astro";
+
+// Navigation components
+import Navbar from "@/components/ui/Navigation/Navbar/Navbar.astro";
+import NavbarStart from "@/components/ui/Navigation/Navbar/NavbarStart.astro";
+import NavbarCenter from "@/components/ui/Navigation/Navbar/NavbarCenter.astro";
+import NavbarEnd from "@/components/ui/Navigation/Navbar/NavbarEnd.astro";
+import Breadcrumbs from "@/components/ui/Navigation/Breadcrumbs/Breadcrumbs.astro";
+import BreadcrumbItem from "@/components/ui/Navigation/Breadcrumbs/BreadcrumbItem.astro";
+import Pagination from "@/components/ui/Navigation/Pagination/Pagination.astro";
+import PaginationButton from "@/components/ui/Navigation/Pagination/PaginationButton.astro";
+import Steps from "@/components/ui/Navigation/Steps/Steps.astro";
+import Step from "@/components/ui/Navigation/Steps/Step.astro";
+import Menu from "@/components/ui/Navigation/Menu/Menu.astro";
+import MenuItem from "@/components/ui/Navigation/Menu/MenuItem.astro";
+
+// Feedback & Display components
+import Alert from "@/components/ui/Feedback/Alert.astro";
+import Toast from "@/components/ui/Feedback/Toast.astro";
+import Progress from "@/components/ui/Feedback/Progress.astro";
+import Loading from "@/components/ui/Feedback/Loading.astro";
+import Stats from "@/components/ui/Feedback/Stats/Stats.astro";
+import Stat from "@/components/ui/Feedback/Stats/Stat.astro";
+import StatTitle from "@/components/ui/Feedback/Stats/StatTitle.astro";
+import StatValue from "@/components/ui/Feedback/Stats/StatValue.astro";
+import StatDesc from "@/components/ui/Feedback/Stats/StatDesc.astro";
+import Tooltip from "@/components/ui/Feedback/Tooltip.astro";
+import Modal from "@/components/ui/Feedback/Modal/Modal.astro";
+import ModalAction from "@/components/ui/Feedback/Modal/ModalAction.astro";
+
+// Layout components
+import Hero from "@/components/ui/Hero.astro";
+import HeroContent from "@/components/ui/HeroContent.astro";
+import Drawer from "@/components/ui/Layout/Drawer.astro";
+import DrawerContent from "@/components/ui/Layout/DrawerContent.astro";
+import DrawerSide from "@/components/ui/Layout/DrawerSide.astro";
+import DrawerToggle from "@/components/ui/Layout/DrawerToggle.astro";
+import Footer from "@/components/ui/Layout/Footer.astro";
+import FooterTitle from "@/components/ui/Layout/FooterTitle.astro";
+import FooterNav from "@/components/ui/Layout/FooterNav.astro";
+---
+
+<Container width="marginxy">
+  <div class="space-y-12">
+    
+    <!-- Header -->
+    <div class="text-center">
+      <Heading as="h1" class="text-4xl font-bold mb-4">UI Component Showcase</Heading>
+      <p class="text-lg text-base-content/70">Complete collection of DaisyUI components for Astro</p>
+    </div>
+
+    <!-- Buttons -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Buttons</Heading>
+      <div class="flex flex-wrap gap-4">
+        <Button>Default</Button>
+        <Button  variant="outline" >Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="link">Link</Button>
+        <Button color="primary">Primary</Button>
+        <Button color="secondary">Secondary</Button>
+        <Button variant="soft" color="accent">Accent</Button>
+        <Button color="success">Success</Button>
+        <Button color="warning">Warning</Button>
+        <Button color="error">Error</Button>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <Button size="lg">Large</Button>
+        <Button size="md">Medium</Button>
+        <Button size="sm">Small</Button>
+        <Button size="xs">Extra Small</Button>
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Badges</Heading>
+      <div class="flex flex-wrap gap-4 items-center">
+        <Badge>Default</Badge>
+        <Badge variant="outline">Outline</Badge>
+        <Badge variant="ghost">Ghost</Badge>
+        <Badge color="primary">Primary</Badge>
+        <Badge color="secondary">Secondary</Badge>
+        <Badge color="accent">Accent</Badge>
+        <Badge color="success">Success</Badge>
+        <Badge color="warning">Warning</Badge>
+        <Badge color="error">Error</Badge>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Cards</Heading>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card>
+          <CardBody>
+            <CardTitle>Default Card</CardTitle>
+            <p>This is a default card with basic styling.</p>
+            <CardActions>
+              <Button variant="outline">Cancel</Button>
+              <Button color="primary">Accept</Button>
+            </CardActions>
+          </CardBody>
+        </Card>
+        
+        <Card variant="bordered" hover>
+          <CardBody>
+            <CardTitle>Bordered Card</CardTitle>
+            <p>This card has a border and hover effect.</p>
+            <CardActions>
+              <Button color="secondary">Action</Button>
+            </CardActions>
+          </CardBody>
+        </Card>
+
+        <Card variant="compact" glass>
+          <CardBody>
+            <CardTitle>Glass Card</CardTitle>
+            <p>This card has a glass morphism effect.</p>
+          </CardBody>
+        </Card>
+      </div>
+    </section>
+
+    <!-- Accordion -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Accordion</Heading>
+      <div class="space-y-4">
+        <AccordionItem variant="arrow">
+          <AccordionTrigger>Arrow Accordion</AccordionTrigger>
+          <AccordionContent>
+            <p>This accordion uses an arrow indicator to show expand/collapse state.</p>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem variant="plus">
+          <AccordionTrigger>Plus Accordion</AccordionTrigger>
+          <AccordionContent>
+            <p>This accordion uses a plus/minus indicator.</p>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem open>
+          <AccordionTrigger>Open by Default</AccordionTrigger>
+          <AccordionContent>
+            <p>This accordion starts in an open state.</p>
+          </AccordionContent>
+        </AccordionItem>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Tabs</Heading>
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Default Tabs</h3>
+          <Tabs>
+            <Tab>Tab 1</Tab>
+            <Tab>Tab 2</Tab>
+            <Tab>Tab 3</Tab>
+          </Tabs>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Bordered Tabs</h3>
+          <Tabs variant="bordered">
+            <Tab>Home</Tab>
+            <Tab>About</Tab>
+            <Tab>Contact</Tab>
+          </Tabs>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Boxed Tabs</h3>
+          <Tabs variant="boxed">
+            <Tab>Dashboard</Tab>
+            <Tab>Settings</Tab>
+            <Tab>Profile</Tab>
+          </Tabs>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Components -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Form Components</Heading>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">Inputs</h3>
+          <Input placeholder="Default input" />
+          <Input variant="bordered" placeholder="Bordered input" />
+          <Input variant="ghost" placeholder="Ghost input" />
+          <Input color="primary" placeholder="Primary input" />
+          <Input size="lg" placeholder="Large input" />
+          <Input size="sm" placeholder="Small input" />
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">Textarea</h3>
+          <Textarea placeholder="Default textarea"></Textarea>
+          <Textarea variant="bordered" placeholder="Bordered textarea"></Textarea>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">Select</h3>
+          <Select>
+            <option disabled selected>Choose option</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </Select>
+          <Select variant="bordered">
+            <option disabled selected>Bordered select</option>
+            <option>Apple</option>
+            <option>Orange</option>
+            <option>Banana</option>
+          </Select>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">Checkboxes & Radio</h3>
+          <div class="flex flex-wrap gap-4">
+            <label class="flex items-center gap-2">
+              <Checkbox />
+              <span>Default</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <Checkbox color="primary" />
+              <span>Primary</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <Checkbox color="success" />
+              <span>Success</span>
+            </label>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <label class="flex items-center gap-2">
+              <Radio name="radio-demo" />
+              <span>Option A</span> 
+            </label>
+            <label class="flex items-center gap-2">
+              <Radio name="radio-demo" color="primary" />
+              <span>Option B</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">Toggle & Range</h3>
+          <div class="space-y-4">
+            <label class="flex items-center gap-2">
+              <Toggle />
+              <span>Default toggle</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <Toggle color="primary" />
+              <span>Primary toggle</span>
+            </label>
+            <Range min="0" max="100" value="50" />
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-lg font-medium">File Input</h3>
+          <FileInput />
+          <FileInput variant="bordered" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Components -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Hero Components</Heading>
+      
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Default Hero</h3>
+          <div class="h-64 rounded-lg overflow-hidden">
+            <Hero variant="default" class="!min-h-0 h-full">
+              <HeroContent>
+                <div class="max-w-md">
+                  <Heading as="h1" class="text-3xl font-bold">Hello there</Heading>
+                  <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi.</p>
+                  <Button color="primary">Get Started</Button>
+                </div>
+              </HeroContent>
+            </Hero>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Hero with Background</h3>
+          <div class="h-64 rounded-lg overflow-hidden">
+            <Hero variant="overlay" class="!min-h-0 h-full bg-gradient-to-r from-purple-500 to-pink-500">
+              <HeroContent variant="overlay">
+                <div class="max-w-md">
+                  <Heading as="h1" class="text-3xl font-bold text-white">Hero with Overlay</Heading>
+                  <p class="py-6 text-white/90">Beautiful hero section with gradient background and overlay effect.</p>
+                  <Button variant="outline" class="text-white border-white hover:bg-white hover:text-black">Learn More</Button>
+                </div>
+              </HeroContent>
+            </Hero>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Center Hero</h3>
+          <div class="h-64 rounded-lg overflow-hidden">
+            <Hero variant="center" class="!min-h-0 h-full">
+              <HeroContent variant="center">
+                <div class="max-w-md text-center">
+                  <Heading as="h1" class="text-3xl font-bold">Centered Content</Heading>
+                  <p class="py-6">Perfect alignment for your main message and call-to-action.</p>
+                  <div class="flex gap-2 justify-center">
+                    <Button color="primary">Primary</Button>
+                    <Button variant="outline">Secondary</Button>
+                  </div>
+                </div>
+              </HeroContent>
+            </Hero>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Navigation</Heading>
+      
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Navbar</h3>
+          <Navbar>
+            <NavbarStart>
+              <Button variant="ghost" size="sm">☰</Button>
+              <span class="font-bold">Brand</span>
+            </NavbarStart>
+            <NavbarCenter>
+              <span>Navigation Center</span>
+            </NavbarCenter>
+            <NavbarEnd>
+              <Button size="sm">Login</Button>
+            </NavbarEnd>
+          </Navbar>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Breadcrumbs</h3>
+          <Breadcrumbs>
+            <BreadcrumbItem href="/">Home</BreadcrumbItem>
+            <BreadcrumbItem href="/docs">Documents</BreadcrumbItem>
+            <BreadcrumbItem>Current Page</BreadcrumbItem>
+          </Breadcrumbs>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Steps</h3>
+          <Steps>
+            <Step color="primary">Start</Step>
+            <Step color="primary">In Progress</Step>
+            <Step>Pending</Step>
+            <Step>Complete</Step>
+          </Steps>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Pagination</h3>
+          <Pagination>
+            <PaginationButton>«</PaginationButton>
+            <PaginationButton>1</PaginationButton>
+            <PaginationButton active>2</PaginationButton>
+            <PaginationButton>3</PaginationButton>
+            <PaginationButton>4</PaginationButton>
+            <PaginationButton>»</PaginationButton>
+          </Pagination>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Menu</h3>
+          <Menu class="w-56">
+            <MenuItem active href="#">Home</MenuItem>
+            <MenuItem href="#">About</MenuItem>
+            <MenuItem href="#">Services</MenuItem>
+            <MenuItem disabled href="#">Contact</MenuItem>
+          </Menu>
+        </div>
+      </div>
+    </section>
+
+    <!-- Drawer Components -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Drawer Components</Heading>
+      
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Basic Drawer</h3>
+          <div class="border rounded-lg p-4 h-64 relative overflow-hidden">
+            <Drawer id="basic-drawer" class="!absolute inset-0">
+              <DrawerContent>
+                <div class="navbar bg-base-100">
+                  <div class="flex-none lg:hidden">
+                    <DrawerToggle for="basic-drawer" variant="navbar" />
+                  </div>
+                  <div class="flex-1 px-2 mx-2">Navbar</div>
+                </div>
+                <div class="flex-1 flex items-center justify-center">
+                  <div class="text-center">
+                    <p>Main content area</p>
+                    <p class="text-sm text-base-content/70">Click the hamburger to open sidebar</p>
+                  </div>
+                </div>
+              </DrawerContent>
+              <DrawerSide htmlFor="basic-drawer">
+                <aside class="bg-base-200 w-64 min-h-full">
+                  <div class="p-4">
+                    <h3 class="font-bold text-lg mb-4">Menu</h3>
+                    <ul class="menu">
+                      <li><a>Sidebar Item 1</a></li>
+                      <li><a>Sidebar Item 2</a></li>
+                      <li><a>Sidebar Item 3</a></li>
+                    </ul>
+                  </div>
+                </aside>
+              </DrawerSide>
+            </Drawer>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Mobile Drawer</h3>
+          <div class="border rounded-lg p-4 h-64 relative overflow-hidden">
+            <Drawer id="mobile-drawer" variant="mobile" class="!absolute inset-0">
+              <DrawerContent>
+                <div class="navbar bg-base-100">
+                  <div class="flex-none">
+                    <DrawerToggle for="mobile-drawer" variant="navbar" />
+                  </div>
+                  <div class="flex-1 px-2 mx-2">Mobile Responsive</div>
+                </div>
+                <div class="flex-1 flex items-center justify-center">
+                  <div class="text-center">
+                    <p>Responsive drawer</p>
+                    <p class="text-sm text-base-content/70">Hidden on desktop, toggleable on mobile</p>
+                  </div>
+                </div>
+              </DrawerContent>
+              <DrawerSide htmlFor="mobile-drawer">
+                <aside class="bg-base-200 w-64 min-h-full">
+                  <div class="p-4">
+                    <h3 class="font-bold text-lg mb-4">Navigation</h3>
+                    <ul class="menu">
+                      <li><a>Dashboard</a></li>
+                      <li><a>Settings</a></li>
+                      <li><a>Profile</a></li>
+                      <li><a>Help</a></li>
+                    </ul>
+                  </div>
+                </aside>
+              </DrawerSide>
+            </Drawer>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Drawer Toggle Variants</h3>
+          <div class="flex flex-wrap gap-4">
+            <DrawerToggle for="example-drawer" variant="button">
+              Button Style
+            </DrawerToggle>
+            <DrawerToggle for="example-drawer" variant="navbar">
+              Navbar Style
+            </DrawerToggle>
+            <DrawerToggle for="example-drawer" variant="ghost">
+              Ghost Style
+            </DrawerToggle>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback & Display -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Feedback & Display</Heading>
+      
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Alerts</h3>
+          <div class="space-y-4">
+            <Alert variant="info">
+              <span>Info: This is an informational alert.</span>
+            </Alert>
+            <Alert variant="success">
+              <span>Success: Operation completed successfully!</span>
+            </Alert>
+            <Alert variant="warning">
+              <span>Warning: Please review this action.</span>
+            </Alert>
+            <Alert variant="error">
+              <span>Error: Something went wrong.</span>
+            </Alert>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Progress Bars</h3>
+          <div class="space-y-4">
+            <Progress value={20} color="primary" />
+            <Progress value={45} color="success" />
+            <Progress value={70} color="warning" />
+            <Progress value={90} color="error" />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Loading Indicators</h3>
+          <div class="flex flex-wrap gap-4 items-center">
+            <Loading variant="spinner" />
+            <Loading variant="dots" />
+            <Loading variant="ring" />
+            <Loading variant="ball" />
+            <Loading variant="bars" />
+            <Loading variant="infinity" />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Stats</h3>
+          <Stats>
+            <Stat>
+              <StatTitle>Total Downloads</StatTitle>
+              <StatValue>31K</StatValue>
+              <StatDesc>Jan 1st - Feb 1st</StatDesc>
+            </Stat>
+            <Stat>
+              <StatTitle class="text-primary">New Users</StatTitle>
+              <StatValue>4,200</StatValue>
+              <StatDesc>↗︎ 400 (22%)</StatDesc>
+            </Stat>
+            <Stat>
+              <StatTitle class="text-success">New Registers</StatTitle>
+              <StatValue>1,200</StatValue>
+              <StatDesc class="text-success">↘︎ 90 (14%)</StatDesc>
+            </Stat>
+          </Stats>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Tooltips</h3>
+          <div class="flex flex-wrap gap-4">
+            <Tooltip tip="Tooltip on top">
+              <Button>Top</Button>
+            </Tooltip>
+            <Tooltip tip="Tooltip on bottom" position="bottom">
+              <Button>Bottom</Button>
+            </Tooltip> 
+            <Tooltip tip="Tooltip on left" position="left">
+              <Button>Left</Button>
+            </Tooltip>
+            <Tooltip tip="Tooltip on right" position="right">
+              <Button>Right</Button>
+            </Tooltip>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Modal</h3>
+          <Button onclick="document.getElementById('demo-modal').showModal()">Open Modal</Button>
+          <Modal id="demo-modal">
+            <h3 class="font-bold text-lg">Hello!</h3>
+            <p class="py-4">This is a demo modal. Press ESC key or click outside to close.</p>
+            <ModalAction>
+              <Button onclick="document.getElementById('demo-modal').close()">Close</Button>
+            </ModalAction>
+          </Modal>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Components -->
+    <section class="space-y-6">
+      <Heading as="h2" class="text-2xl font-semibold">Footer Components</Heading>
+      
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Default Footer</h3>
+          <Footer>
+            <FooterNav>
+              <FooterTitle>Services</FooterTitle>
+              <a class="link link-hover">Branding</a>
+              <a class="link link-hover">Design</a>
+              <a class="link link-hover">Marketing</a>
+              <a class="link link-hover">Advertisement</a>
+            </FooterNav>
+            <FooterNav>
+              <FooterTitle>Company</FooterTitle>
+              <a class="link link-hover">About us</a>
+              <a class="link link-hover">Contact</a>
+              <a class="link link-hover">Jobs</a>
+              <a class="link link-hover">Press kit</a>
+            </FooterNav>
+            <FooterNav>
+              <FooterTitle>Legal</FooterTitle>
+              <a class="link link-hover">Terms of use</a>
+              <a class="link link-hover">Privacy policy</a>
+              <a class="link link-hover">Cookie policy</a>
+            </FooterNav>
+          </Footer>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Center Footer</h3>
+          <Footer variant="center">
+            <div class="grid grid-flow-col gap-4">
+              <a><svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a> 
+              <a><svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a> 
+              <a><svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+            </div> 
+            <div>
+              <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+            </div>
+          </Footer>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-4">Compact Footer</h3>
+          <Footer variant="compact">
+            <aside class="items-center grid-flow-col">
+              <svg class="w-10 h-10 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path></svg>
+              <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+            </aside> 
+            <nav class="md:place-self-center md:justify-self-end">
+              <div class="grid grid-flow-col gap-4">
+                <a><svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                <a><svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>
+                <a><svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+              </div>
+            </nav>
+          </Footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase Footer -->
+    <div class="text-center pt-12 border-t">
+      <p class="text-base-content/70">All components built with DaisyUI and Astro</p>
+    </div>
+
+  </div>
+</Container>

@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  tabId: string;
+  active?: boolean;
+  class?: string;
+}
+
+const {
+  tabId,
+  active = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "tab-content",
+  "p-4",
+  !active && "hidden",
+  className
+);
+---
+
+<div 
+  class={classes}
+  id={`tab-${tabId}`}
+  role="tabpanel"
+  {...rest}
+>
+  <slot />
+</div>

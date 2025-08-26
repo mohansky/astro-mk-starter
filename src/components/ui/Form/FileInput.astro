@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"input"> {
+  variant?: "default" | "bordered" | "ghost";
+  size?: "lg" | "md" | "sm" | "xs";
+  color?: "primary" | "secondary" | "accent" | "info" | "success" | "warning" | "error";
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size,
+  color,
+  disabled = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "file-input",
+  "w-full",
+  // Variant
+  variant === "bordered" && "file-input-bordered",
+  variant === "ghost" && "file-input-ghost",
+  // Size
+  size && `file-input-${size}`,
+  // Color
+  color && `file-input-${color}`,
+  // Additional custom classes
+  className
+);
+---
+
+<input
+  type="file"
+  class={classes}
+  disabled={disabled}
+  {...rest}
+/>

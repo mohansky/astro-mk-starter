@@ -1,0 +1,29 @@
+---
+export interface Props {
+  id: string;
+  variant?: 'default' | 'mobile' | 'overlay';
+  side?: 'start' | 'end';
+  class?: string;
+}
+
+const { 
+  id,
+  variant = 'default', 
+  side = 'start',
+  class: className,
+  ...rest 
+} = Astro.props;
+
+const variants = {
+  default: 'drawer',
+  mobile: 'drawer lg:drawer-open',
+  overlay: 'drawer drawer-mobile'
+};
+
+const drawerClass = `${variants[variant]} ${className || ''}`.trim();
+---
+
+<div class={drawerClass} {...rest}>
+  <input id={id} type="checkbox" class="drawer-toggle" />
+  <slot />
+</div>

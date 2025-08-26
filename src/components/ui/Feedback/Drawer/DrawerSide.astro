@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  class?: string;
+}
+
+const {
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "drawer-side",
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <label for="drawer-toggle" aria-label="close sidebar" class="drawer-overlay"></label>
+  <slot />
+</div>

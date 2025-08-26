@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  variant?: "default" | "vertical";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "stats",
+  "shadow",
+  // Variant
+  variant === "vertical" && "stats-vertical",
+  // Additional custom classes
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

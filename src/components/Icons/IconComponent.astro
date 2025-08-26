@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"svg"> {
+  textColor?: string;
+  class?: string;
+  icon: string;
+}
+
+const { textColor = "white", icon, class: className, ...rest } = Astro.props;
+---
+
+<svg 
+  fill="none"
+  stroke="currentColor"
+  viewBox="0 0 24 24"
+  class={cn(" ", className)}
+  {...rest}
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    d={icon}></path>
+</svg>

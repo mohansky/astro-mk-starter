@@ -1,0 +1,123 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Accordion from "../ui/Accordion/Accordion.astro";
+import AccordionItem from "../ui/Accordion/AccordionItem.astro";
+import AccordionTrigger from "../ui/Accordion/AccordionTrigger.astro";
+import AccordionContent from "../ui/Accordion/AccordionContent.astro";
+import Background from "../ui/Background.astro";
+---
+
+<section class="bg-base-200" id="faq">
+  <Background variant="small">
+    <Container>
+      <div class="text-center mb-12">
+        <Heading as="h2" size="xl" class="text-primary mb-4">
+          Frequently Asked Questions
+        </Heading>
+        <p class="text-lg text-base-content/70 max-w-2xl mx-auto">
+          Get answers to the most common questions about our services
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <Accordion autoClose>
+          <!-- FAQ 1 -->
+          <AccordionItem variant="arrow" class="bg-base-100 rounded-lg">
+            <AccordionTrigger name="faq1">
+              What services do you offer?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p class="text-base-content/80 pb-4">
+                We offer a comprehensive range of services including web
+                development, mobile app development, cloud solutions, UI/UX
+                design, and digital transformation consulting. Our team
+                specializes in modern technologies and frameworks to deliver
+                cutting-edge solutions.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+
+          <!-- FAQ 2 -->
+          <AccordionItem variant="arrow" class="bg-base-100 rounded-lg">
+            <AccordionTrigger name="faq2">
+              How long does a typical project take?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p class="text-base-content/80 pb-4">
+                Project timelines vary depending on complexity and scope. A
+                simple website might take 2-4 weeks, while complex enterprise
+                applications can take 3-6 months. We provide detailed project
+                timelines during our initial consultation and keep you updated
+                throughout the process.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+
+          <!-- FAQ 3 -->
+          <AccordionItem variant="arrow" class="bg-base-100 rounded-lg">
+            <AccordionTrigger name="faq3">
+              Do you provide ongoing support and maintenance?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p class="text-base-content/80 pb-4">
+                Yes! We offer comprehensive support and maintenance packages to
+                ensure your applications stay secure, updated, and performing
+                optimally. Our support includes bug fixes, security updates,
+                performance monitoring, and feature enhancements.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+
+          <!-- FAQ 4 -->
+          <AccordionItem variant="arrow" class="bg-base-100 rounded-lg">
+            <AccordionTrigger name="faq4">
+              What is your development process?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p class="text-base-content/80 pb-4">
+                We follow an agile development methodology with regular sprints
+                and client feedback loops. Our process includes discovery,
+                planning, design, development, testing, and deployment phases.
+                We ensure transparency through regular updates and demo
+                sessions.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+
+          <!-- FAQ 5 -->
+          <AccordionItem variant="arrow" class="bg-base-100 rounded-lg">
+            <AccordionTrigger name="faq5">
+              How do you ensure project quality?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p class="text-base-content/80 pb-4">
+                Quality is our top priority. We implement rigorous testing
+                procedures including unit testing, integration testing, and user
+                acceptance testing. Our code goes through peer reviews, and we
+                follow industry best practices for security, performance, and
+                maintainability.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+
+          <!-- FAQ 6 -->
+          <AccordionItem variant="arrow" class="bg-base-100 rounded-lg">
+            <AccordionTrigger name="faq6">
+              What are your pricing models?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p class="text-base-content/80 pb-4">
+                We offer flexible pricing models including fixed-price projects,
+                time and materials, and retainer-based agreements. The pricing
+                depends on project complexity, timeline, and specific
+                requirements. We provide detailed quotes after understanding
+                your needs.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </Container>
+  </Background>
+</section>

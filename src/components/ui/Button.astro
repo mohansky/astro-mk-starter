@@ -1,0 +1,104 @@
+---
+// src/components/ui/Button.astro
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"button"> {
+  variant?: "default" | "outline" | "ghost" | "link" | "soft";
+  color?:
+    | "neutral"
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "lg" | "md" | "sm" | "xs";
+  shape?: "square" | "circle";
+  themed?: boolean;
+  wide?: boolean;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  noAnimation?: boolean;
+  glass?: boolean;
+  href?: string;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  color,
+  size,
+  shape,
+  themed = false,
+  wide = false,
+  fullWidth = false,
+  disabled = false,
+  loading = false,
+  noAnimation = false,
+  glass = false,
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  default: "btn",
+  outline: "btn btn-outline",
+  ghost: "btn btn-ghost",
+  link: "btn btn-link text-left p-0 no-underline hover:underline transition duration-300 ease-in-out",
+  soft: "btn btn-soft",
+};
+
+const colors: Record<string, string> = {
+  neutral: "btn-neutral",
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  accent: "btn-accent",
+  info: "btn-info",
+  success: "btn-success",
+  warning: "btn-warning",
+  error: "btn-error",
+};
+
+const sizes: Record<string, string> = {
+  lg: "btn-lg",
+  md: "btn-md",
+  sm: "btn-sm",
+  xs: "btn-xs",
+};
+
+const shapes: Record<string, string> = {
+  square: "btn-square",
+  circle: "btn-circle",
+};
+
+const classes = cn(
+  variants[variant],
+  color && colors[color],
+  size && sizes[size],
+  shape && shapes[shape],
+  themed && "font-workSans uppercase text-xs font-medium tracking-widest px-12 py-6",
+  wide && "btn-wide",
+  fullWidth && "btn-block",
+  glass && "glass",
+  disabled && "btn-disabled",
+  loading && "loading",
+  noAnimation && "no-animation",
+  className
+);
+
+// Determine whether to render a button or an anchor tag
+const Element = href ? "a" : "button";
+---
+
+<Element
+  class={classes}
+  href={href}
+  disabled={Element === "button" ? disabled : undefined}
+  {...rest}
+>
+  <slot />
+</Element>

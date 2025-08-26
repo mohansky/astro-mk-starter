@@ -1,0 +1,66 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"button"> {
+  active?: boolean;
+  disabled?: boolean;
+  href?: string;
+  class?: string;
+}
+
+const {
+  active = false,
+  disabled = false,
+  href,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "tab",
+  active && "tab-active",
+  disabled && "tab-disabled",
+  className
+);
+
+const Element = href ? "a" : "button";
+---
+
+<Element
+  role="tab"
+  class={classes}
+  href={href}
+  disabled={Element === "button" ? disabled : undefined}
+  data-tab-trigger
+  {...rest}
+>
+  <slot />
+</Element>
+
+<script>
+  // Handle tab interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabTriggers = document.querySelectorAll('[data-tab-trigger]');
+    
+    tabTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        // Only handle if it's a button (not a link)
+        if (trigger.tagName === 'BUTTON') {
+          // Find the parent tabs container
+          const tabsContainer = trigger.closest('[role="tablist"]');
+          if (tabsContainer) {
+            // Remove active class from all tabs in this container
+            const allTabs = tabsContainer.querySelectorAll('[data-tab-trigger]');
+            allTabs.forEach(tab => {
+              tab.classList.remove('tab-active');
+            });
+            
+            // Add active class to clicked tab
+            trigger.classList.add('tab-active');
+          }
+        }
+      });
+    });
+  });
+</script>

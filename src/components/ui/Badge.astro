@@ -1,0 +1,64 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"span"> {
+  variant?: "default" | "outline" | "ghost" | "dash" | "soft";
+  color?: 
+    | "neutral" 
+    | "primary" 
+    | "secondary" 
+    | "accent" 
+    | "info" 
+    | "success" 
+    | "warning" 
+    | "error";
+  size?: "lg" | "md" | "sm" | "xs";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  color,
+  size,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  default: "badge",
+  outline: "badge badge-outline",
+  dash: "badge badge-dash",
+  soft: "badge badge-soft",
+  ghost: "badge badge-ghost",
+};
+
+const colors: Record<string, string> = {
+  neutral: "badge-neutral",
+  primary: "badge-primary",
+  secondary: "badge-secondary",
+  accent: "badge-accent",
+  info: "badge-info",
+  success: "badge-success",
+  warning: "badge-warning",
+  error: "badge-error",
+};
+
+const sizes: Record<string, string> = {
+  lg: "badge-lg",
+  md: "badge-md",
+  sm: "badge-sm",
+  xs: "badge-xs",
+};
+
+const classes = cn(
+  variants[variant],
+  color && colors[color],
+  size && sizes[size],
+  className
+);
+---
+
+<span class={classes} {...rest}>
+  <slot />
+</span>

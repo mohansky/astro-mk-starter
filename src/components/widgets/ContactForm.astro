@@ -1,0 +1,58 @@
+---
+import Input from "../ui/Form/Input.astro";
+import Textarea from "../ui/Form/Textarea.astro";
+import Label from "../ui/Form/Label.astro";
+import Button from "../ui/Button.astro";
+import Card from "../ui/Card/Card.astro";
+import CardBody from "../ui/Card/CardBody.astro";
+---
+
+<Card variant="bordered" shadow="lg" class="bg-base-100">
+  <CardBody class="p-8">
+    <form class="space-y-6">
+      <!-- Name Field -->
+      <div>
+        <Label for="name" required>Full Name</Label>
+        <Input
+          id="name"
+          name="name"
+          type="text"
+          variant="bordered"
+          placeholder="Enter your full name"
+          required
+        />
+      </div>
+
+      <!-- Email Field -->
+      <div>
+        <Label for="email" required>Email Address</Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          variant="bordered"
+          placeholder="Enter your email address"
+          required
+        />
+      </div>
+
+      <!-- Message Field -->
+      <div>
+        <Label for="message" required>Message</Label>
+        <Textarea
+          id="message"
+          name="message"
+          variant="bordered"
+          placeholder="Tell us about your project..."
+          rows="6"
+          required
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <Button type="submit" color="primary" size="lg" fullWidth class="mt-8">
+        Send Message
+      </Button>
+    </form>
+  </CardBody>
+</Card>

@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  position?: "top" | "middle" | "bottom" | "start" | "center" | "end";
+  class?: string;
+}
+
+const {
+  position = "top",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "toast",
+  // Position
+  position === "top" && "toast-top",
+  position === "middle" && "toast-middle", 
+  position === "bottom" && "toast-bottom",
+  position === "start" && "toast-start",
+  position === "center" && "toast-center",
+  position === "end" && "toast-end",
+  // Additional custom classes
+  className
+);
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

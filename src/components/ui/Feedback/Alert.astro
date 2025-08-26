@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"div"> {
+  variant?: "info" | "success" | "warning" | "error";
+  class?: string;
+}
+
+const {
+  variant = "info",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  info: "alert alert-info",
+  success: "alert alert-success",
+  warning: "alert alert-warning",
+  error: "alert alert-error",
+};
+
+const classes = cn(
+  variants[variant],
+  className
+);
+---
+
+<div class={classes} {...rest} role="alert">
+  <slot />
+</div>

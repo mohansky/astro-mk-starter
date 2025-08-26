@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"input"> {
+  name?: string;
+  class?: string;
+}
+
+const {
+  name,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "collapse-title",
+  "text-xl",
+  "font-medium",
+  className
+);
+---
+
+<input type="checkbox" name={name} {...rest} />
+<div class={classes}>
+  <slot />
+</div>

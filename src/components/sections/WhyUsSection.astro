@@ -1,0 +1,138 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Badge from "../ui/Badge.astro";
+---
+
+<section class="bg-base-100" id="why-us">
+  <Container>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div class="space-y-8">
+        <div>
+          <Badge variant="default" class="mb-4">Why Choose Us</Badge>
+          <Heading as="h2" size="xl" class="text-primary mb-6">
+            What Makes Us Different
+          </Heading>
+          <p class="text-lg text-base-content/80 leading-relaxed">
+            We don't just deliver solutions – we create partnerships that drive 
+            sustainable growth and success for your business.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Feature 1 -->
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-content mb-2">Proven Track Record</h3>
+              <p class="text-base-content/70">
+                Over 500+ successful projects delivered across various industries with 99% client satisfaction rate.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-content mb-2">Lightning Fast Delivery</h3>
+              <p class="text-base-content/70">
+                Our agile development process ensures rapid delivery without compromising on quality or security.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-content mb-2">Expert Team</h3>
+              <p class="text-base-content/70">
+                Our certified professionals bring years of experience and cutting-edge expertise to every project.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-info/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-info" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-base-content mb-2">24/7 Support</h3>
+              <p class="text-base-content/70">
+                Round-the-clock support ensures your business operations never skip a beat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="space-y-8">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="text-center p-6 bg-primary/5 rounded-lg">
+            <div class="text-3xl font-bold text-primary mb-2">500+</div>
+            <div class="text-sm text-base-content/70">Projects Completed</div>
+          </div>
+          <div class="text-center p-6 bg-secondary/5 rounded-lg">
+            <div class="text-3xl font-bold text-secondary mb-2">99%</div>
+            <div class="text-sm text-base-content/70">Client Satisfaction</div>
+          </div>
+          <div class="text-center p-6 bg-accent/5 rounded-lg">
+            <div class="text-3xl font-bold text-accent mb-2">50+</div>
+            <div class="text-sm text-base-content/70">Team Members</div>
+          </div>
+          <div class="text-center p-6 bg-info/5 rounded-lg">
+            <div class="text-3xl font-bold text-info mb-2">24/7</div>
+            <div class="text-sm text-base-content/70">Support Available</div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="bg-base-200 p-6 rounded-lg">
+          <div class="flex items-start gap-4">
+            <img 
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+              alt="Client testimonial" 
+              class="w-12 h-12 rounded-full object-cover"
+            />
+            <div>
+              <p class="text-base-content/80 italic mb-3">
+                "Working with this team has been transformative for our business. 
+                Their expertise and dedication are unmatched."
+              </p>
+              <div>
+                <div class="font-semibold text-base-content">Sarah Johnson</div>
+                <div class="text-sm text-base-content/60">CEO, TechCorp Inc.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

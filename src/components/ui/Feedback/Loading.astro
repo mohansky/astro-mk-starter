@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"span"> {
+  variant?: "spinner" | "dots" | "ring" | "ball" | "bars" | "infinity";
+  size?: "lg" | "md" | "sm" | "xs";
+  class?: string;
+}
+
+const {
+  variant = "spinner",
+  size,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "loading",
+  // Variant
+  variant && `loading-${variant}`,
+  // Size
+  size && `loading-${size}`,
+  // Additional custom classes
+  className
+);
+---
+
+<span class={classes} {...rest}></span>

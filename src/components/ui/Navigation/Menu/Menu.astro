@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"ul"> {
+  variant?: "default" | "compact" | "horizontal";
+  size?: "lg" | "md" | "sm" | "xs";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  default: "menu bg-transparent rounded-box",
+  compact: "menu menu-compact bg-base-200 rounded-box",
+  horizontal: "menu menu-horizontal bg-base-200 rounded-box",
+};
+
+const sizes: Record<string, string> = {
+  lg: "menu-lg",
+  md: "menu-md",
+  sm: "menu-sm",
+  xs: "menu-xs",
+};
+
+const classes = cn(
+  variants[variant],
+  size && sizes[size],
+  className
+);
+---
+
+<ul class={classes} {...rest}>
+  <slot />
+</ul>

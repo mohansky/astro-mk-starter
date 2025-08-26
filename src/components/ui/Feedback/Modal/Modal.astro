@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"dialog"> {
+  id: string;
+  class?: string;
+}
+
+const {
+  id,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = cn(
+  "modal",
+  className
+);
+---
+
+<dialog id={id} class={classes} {...rest}>
+  <div class="modal-box">
+    <slot />
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

@@ -1,0 +1,29 @@
+---
+export interface Props {
+  variant?: 'default' | 'center' | 'overlay';
+  class?: string;
+}
+
+const { variant = 'default', class: className, ...rest } = Astro.props;
+
+const variants = {
+  default: 'hero-content text-center',
+  center: 'hero-content text-center',
+  overlay: 'hero-overlay bg-opacity-60'
+};
+
+const contentClass = variant === 'overlay' 
+  ? variants[variant] 
+  : `${variants[variant]} ${className || ''}`.trim();
+---
+
+{variant === 'overlay' ? (
+  <div class={contentClass}></div>
+  <div class={`hero-content text-center text-neutral-content ${className || ''}`} {...rest}>
+    <slot />
+  </div>
+) : (
+  <div class={contentClass} {...rest}>
+    <slot />
+  </div>
+)}

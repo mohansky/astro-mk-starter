@@ -1,0 +1,26 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Heading from "@/components/ui/Heading.astro";
+import Hero from "@/components/ui/Hero.astro";
+import HeroContent from "@/components/ui/HeroContent.astro";
+---
+
+<Hero
+  variant="overlay"
+  class="h-screen bg-gradient-to-r from-purple-500 to-pink-500"
+>
+  <HeroContent variant="overlay">
+    <div class="max-w-xl space-y-5">
+      <Heading
+        as="h1"
+        size="xxl"
+        class="text-neutral-content"
+        fontstyle="manrope">Hero with Overlay</Heading
+      >
+      <p class="py-6 text-neutral-content/90">
+        Beautiful hero section with gradient background and overlay effect.
+      </p>
+      <Button variant="outline" size="lg">Learn More</Button>
+    </div>
+  </HeroContent>
+</Hero>
